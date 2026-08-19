@@ -12,6 +12,8 @@ You must execute the Principal Architect procedural workflow and enforce Enterpr
 2. **Statelessness**: Enforce stateless service layers. Application servers must be capable of horizontal scaling behind a load balancer without localized state corruption.
 3. **Database Performance**: Mandate index utilization for frequent queries. Actively prevent and eliminate N+1 query patterns in ORMs.
 4. **Separation of Concerns**: Enforce strict module isolation (e.g., separating routing controllers, business domain logic, and data access layers).
+5. **Robust Exception Handling**: JANGAN PERNAH membiarkan seluruh error bermuara pada `500 Internal Server Error` bawaan. Anda WAJIB mengimplementasikan *Global Exception Filter* (misal: `AllExceptionsFilter` di NestJS) untuk memisahkan error operasional (seperti 400 Bad Request) dari error sistemik, serta mencegah kebocoran *stack traces* ke sisi klien.
+6. **Monorepo Dockerization**: Saat melakukan dockerisasi pada proyek berbasis Turborepo, selalu gunakan fitur `turbo prune` di dalam *multi-stage Dockerfile* untuk mengisolasi instalasi dependensi dan menghemat ukuran *image* produksi.
 </ENTERPRISE_STANDARDS>
 
 <PROCEDURAL_WORKFLOW>
