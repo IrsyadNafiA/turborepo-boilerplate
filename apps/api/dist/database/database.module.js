@@ -25,7 +25,7 @@ exports.DatabaseModule = DatabaseModule = __decorate([
                     port: configService.get('DB_PORT') || 5432,
                     username: configService.get('DB_USERNAME') || 'postgres',
                     password: configService.get('DB_PASSWORD') || 'postgres',
-                    database: configService.get('DB_DATABASE') || 'test',
+                    database: configService.get('DB_NAME') || 'test',
                     autoLoadEntities: true,
                     synchronize: configService.get('DB_SYNC') || true,
                 }),
