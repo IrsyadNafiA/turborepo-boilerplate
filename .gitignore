@@ -1,0 +1,28 @@
+# Sensitive Agent Configurations
+.agents/mcp_config.json
+opencode.json
+
+# Ephemeral Agent State, Plans, Incidents, and Scratchpad
+.agents/scratch/*
+!.agents/scratch/.gitkeep
+.agents/plans/*
+!.agents/plans/.gitkeep
+!.agents/plans/*.md
+.agents/incidents/*
+!.agents/incidents/.gitkeep
+.agents/brain/audit.jsonl
+.agents-backups/
+
+# Local plan backups
+*.bak
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+
+# Typical Development Ignores
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
