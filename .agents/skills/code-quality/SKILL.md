@@ -13,6 +13,7 @@ Enforce Staff-level procedural rigor and Enterprise-Grade software architecture 
 3. **Self-Documenting Code**: Mandate descriptive, domain-driven variable and function names. Restrict comments exclusively to explaining "Why" the business logic exists.
 4. **Resilient Error Handling**: Enforce strict error boundaries. Catch specific exceptions, attach diagnostic context, and ensure graceful degradation.
 5. **Feature Completeness (Anti-Dummy)**: No "half-assed" implementations. You MUST write end-to-end functionality including database persistence, error routing, and type-safe contracts. NEVER leave placeholders, mock arrays, or hardcoded stubs.
+6. **Strict Type Safety**: NEVER use the `any` data type. Always declare robust, type-safe structures using Generics (e.g., `<T>`) or explicit interfaces to enforce strict API contracts.
 </ENTERPRISE_STANDARDS>
 
 <PROCEDURAL_WORKFLOW>

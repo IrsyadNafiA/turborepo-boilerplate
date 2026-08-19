@@ -8,3 +8,8 @@ description: Long-term memory for the agent. Contains learned architectural less
 This file acts as the agent's persistent memory. If the agent makes a mistake, the user corrects it, or a deeply nested framework bug is solved, the solution MUST be appended here to prevent future regressions.
 
 ## Rules
+
+- **Package Manager**: Always use `npm` (not pnpm or yarn) for managing Turborepo workspaces in this project.
+- **Dynamic Database Config**: Database configurations (e.g., NestJS TypeORM) MUST be dynamically driven by `.env` variables.
+- **Default Database**: Use PostgreSQL as the default database system unless otherwise specified.
+- **GitHub CLI**: Always prioritize using the GitHub CLI (`gh`) for remote interactions with GitHub (e.g., creating repos, managing PRs) instead of using the API directly or manual remote git configurations where applicable.

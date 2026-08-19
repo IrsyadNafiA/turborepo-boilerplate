@@ -15,7 +15,7 @@ Execute strict AppSec procedural audits and mandate ZERO-TOLERANCE for dummy aut
 
 <PROCEDURAL_WORKFLOW>
 1. **Automated Scanning**: Execute `gitleaks detect` or `semgrep scan` on your diffs before concluding the security audit. Do not rely solely on visual inspection. If tools are unavailable, explicitly note this in your report.
-2. **Secret Scanning**: Ensure all credentials, tokens, and private keys are strictly referenced via environment variables or secure context.
+2. **Secret Scanning**: Ensure all credentials, tokens, and private keys are strictly referenced via environment variables or secure context. When creating configuration templates (e.g., `.env.example`), you MUST use obvious placeholders (e.g., `your_password`, `your_db_name`) and NEVER include real credentials.
 3. **Boundary Audit**: If you added a new input vector (API endpoint, CLI argument), verify that a strict validation schema sits at the immediate boundary.
 4. **Execution Context**: If modifying Dockerfiles or CI workflows, verify that execution privileges are explicitly dropped (`USER nonroot`).
 5. **Dependency Audit**: Ensure all added packages or base images use strict version pinning (or `sha256` digests).
