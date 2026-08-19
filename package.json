@@ -1,22 +1,30 @@
 {
-    "name":  "turborepo-boilerplate",
-    "version":  "0.0.0",
-    "private":  true,
-    "workspaces":  [
-                       "apps/*",
-                       "packages/*"
-                   ],
-    "scripts":  {
-                    "build":  "turbo run build",
-                    "dev":  "turbo run dev",
-                    "lint":  "turbo run lint",
-                    "clean":  "turbo run clean"
-                },
-    "devDependencies":  {
-                            "turbo":  "latest"
-                        },
-    "engines":  {
-                    "node":  "\u003e=18"
-                },
-    "packageManager":  "npm@10.8.2"
+  "name": "turborepo-boilerplate",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "npm@10.8.2",
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "npm run lint --workspaces --if-present"
+    ]
+  }
 }
