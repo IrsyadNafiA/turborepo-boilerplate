@@ -5,10 +5,11 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
+import { AbstractHttpAdapter } from '@nestjs/core';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
-  constructor(private readonly httpAdapter: any) {}
+  constructor(private readonly httpAdapter: AbstractHttpAdapter) {}
 
   catch(exception: unknown, host: ArgumentsHost): void {
     const { httpAdapter } = this;
@@ -20,19 +21,21 @@ export class AllExceptionsFilter implements ExceptionFilter {
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
     let message = 'Internal server error';
-    let data: any = null;
+    let data: unknown = null;
 
     if (exception instanceof HttpException) {
-      const response = exception.getResponse() as any;
+      const response = exception.getResponse();
       if (typeof response === 'object' && response !== null) {
-        message = response.message || response.error || message;
+        const resObj = response as Record<string, unknown>;
+        message =
+          (resObj.message as string) || (resObj.error as string) || message;
         data = response;
       } else if (typeof response === 'string') {
         message = response;
       }
     } else if (exception instanceof Error) {
-        // Optional: log or handle standard errors
-        message = exception.message || message;
+      // Optional: log or handle standard errors
+      message = exception.message || message;
     }
 
     const responseBody = {
