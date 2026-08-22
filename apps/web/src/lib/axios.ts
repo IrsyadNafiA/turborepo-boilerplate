@@ -10,11 +10,11 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    // You can add auth tokens here
-    // const token = localStorage.getItem('token');
-    // if (token) {
-    //   config.headers.Authorization = `Bearer ${token}`;
-    // }
+    // Attach auth token from local storage
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
   },
   (error) => {
@@ -29,6 +29,14 @@ api.interceptors.response.use(
   },
   (error) => {
     // Handle global errors here
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      // Force reload or redirect to login (if not already on login page)
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
+    }
     return Promise.reject(error);
   }
 );
